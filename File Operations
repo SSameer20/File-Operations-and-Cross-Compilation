@@ -1,0 +1,63 @@
+Title: File Operations and Cross Compilation
+
+Abstract:
+This assignment focuses on File Operations and Cross Compilation, two important topics in the field of software development.
+The assignment aims to provide students with a comprehensive understanding of file handling in various programming languages and the concept of cross compilation.
+Students will learn how to perform common file operations, such as reading, writing, and manipulating files, and gain insights into cross-compiling software for different target architectures.
+The assignment includes theoretical explanations, practical examples, and hands-on exercises to enhance students' learning experience.
+
+Assignment: 1 - File Operations
+
+Exercise 1: Write a C program that reads a file, counts the number of words, and displays the result.
+
+#include <stdio.h>
+
+#define MAX_LENGTH 100
+
+int countWords(FILE *file) {
+    int wordCount = 0;
+    char ch;
+    int inWord = 0;
+
+    while ((ch = fgetc(file)) != EOF) {
+        if (ch == ' ' || ch == '\n' || ch == '\t') {
+            inWord = 0;
+        } else if (inWord == 0) {
+            inWord = 1;
+            wordCount++;
+        }
+    }
+
+    return wordCount;
+}
+
+int main() {
+    FILE *file;
+    char fileName[MAX_LENGTH];
+    int wordCount;
+
+    printf("Enter the file name: ");
+    scanf("%s", fileName);
+
+    file = fopen(fileName, "r");
+
+    if (file == NULL) {
+        printf("File not found or unable to open.\n");
+        return 1;
+    }
+
+    wordCount = countWords(file);
+
+    printf("Number of words in the file: %d\n", wordCount);
+
+    fclose(file);
+
+    return 0;
+}
+
+
+Conclusion:
+In conclusion, this assignment provides students with a comprehensive understanding of file operations and cross compilation.
+By completing the exercises, students will gain practical experience in performing file handling tasks in different programming languages and cross-compiling software for various target architectures.
+These skills are crucial for software developers, especially those working on cross-platform projects or embedded systems.
+Mastering file operations and cross compilation will enhance students' ability to efficiently work with files and deploy software on diverse hardware platforms.
